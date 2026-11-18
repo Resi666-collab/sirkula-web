@@ -72,7 +72,7 @@
       }
     });
 
-    // 2. Logika Lupa Kata Sandi
+    // 2. Logika Lupa Kata Sandi (SUDAH DIPERBAIKI)
     document.getElementById('forgotPasswordLink').addEventListener('click', async (e) => {
       e.preventDefault();
       const email = document.getElementById('loginEmail').value;
@@ -83,8 +83,9 @@
       }
 
       try {
+        // PERUBAHAN PENTING DI SINI: Menggunakan window.location.origin
         const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-          redirectTo: 'http://localhost:8080/reset-password.html', // Arahkan ke halaman reset nanti
+          redirectTo: window.location.origin + '/reset-password.html', 
         });
         
         if (error) throw error;
