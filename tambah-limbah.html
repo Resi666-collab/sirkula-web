@@ -7,92 +7,20 @@
   
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
 
   <style>
-    /* CSS KHUSUS UNTUK MERAPIKAN FORM */
-    .auth-page-wrapper {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: var(--color-warm-cream);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-    .auth-main-content {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3.5rem 1.5rem;
-    }
-    .form-card {
-      background: var(--color-white);
-      border-radius: var(--radius-xl);
-      padding: 3rem;
-      width: 100%;
-      max-width: 680px;
-      box-shadow: var(--shadow-modal);
-      border: 1px solid var(--color-border);
-    }
-    
-    /* Mengatur Jarak antar Input */
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1.25rem;
-    }
-    
-    /* Label Form */
-    .form-label {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--color-forest-green);
-    }
-
-    /* Kotak Input, Select, Textarea */
-    .form-control {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      border: 1.5px solid var(--color-border);
-      border-radius: var(--radius-sm);
-      background: var(--color-warm-cream);
-      font-family: inherit;
-      font-size: 0.95rem;
-      color: var(--color-charcoal);
-      transition: all 0.2s ease;
-    }
-    .form-control::placeholder {
-      color: #9ca3af;
-      font-weight: 400;
-    }
-    .form-control:focus {
-      outline: none;
-      border-color: var(--color-leaf-green);
-      background: var(--color-white);
-      box-shadow: 0 0 0 3px var(--color-leaf-green-soft);
-    }
-    
-    /* Textarea */
-    textarea.form-control {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    /* Baris Ganda (Kiri Kanan) */
-    .form-row-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-    @media (max-width: 600px) {
-      .form-row-2 { grid-template-columns: 1fr; }
-      .form-card { padding: 2rem 1.5rem; }
-    }
+    .auth-page-wrapper { min-height: 100vh; display: flex; flex-direction: column; background: var(--color-warm-cream); font-family: 'Plus Jakarta Sans', sans-serif; }
+    .auth-main-content { flex: 1; display: flex; align-items: center; justify-content: center; padding: 3.5rem 1.5rem; }
+    .form-card { background: var(--color-white); border-radius: var(--radius-xl); padding: 3rem; width: 100%; max-width: 680px; box-shadow: var(--shadow-modal); border: 1px solid var(--color-border); }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .form-label { font-weight: 700; font-size: 0.9rem; color: var(--color-forest-green); }
+    .form-control { width: 100%; padding: 0.85rem 1rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-warm-cream); font-family: inherit; font-size: 0.95rem; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    @media (max-width: 600px) { .form-row-2 { grid-template-columns: 1fr; } .form-card { padding: 2rem 1.5rem; } }
   </style>
 </head>
 <body class="auth-page-wrapper">
@@ -103,29 +31,22 @@
         <img src="assets/images/logo.svg" alt="SIRKULA Logo" style="width: 38px; height: 38px;">
         <span class="brand-title">SIRKULA</span>
       </a>
-      <a href="marketplace.html" class="btn btn-secondary btn-sm">
-        <i data-lucide="arrow-left"></i> Kembali ke Marketplace
+      <a href="index.html" class="btn btn-secondary btn-sm">
+        <i data-lucide="arrow-left"></i> Kembali
       </a>
     </div>
   </header>
 
   <main class="auth-main-content">
     <div class="form-card">
-      <div style="margin-bottom: 1rem;">
-        <span class="badge-demo" style="background: #e8f5e9; color: #2e7d32; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700;">
-          <i data-lucide="plus-circle" style="width: 14px; height: 14px; margin-right: 4px;"></i> POSTING LIMBAH BARU
-        </span>
-      </div>
-
       <h1 class="section-title" style="font-size: 2rem; margin-bottom: 0.35rem; color: var(--color-forest-green);">
         Tambah Pasokan Limbah
       </h1>
-      <p class="section-subtitle" style="font-size: 0.95rem; margin-bottom: 2rem; color: var(--color-charcoal-muted);">
+      <p class="section-subtitle" style="font-size: 0.95rem; margin-bottom: 2rem;">
         Isi detail limbah organik yang ingin Anda salurkan ke mitra upcycler.
       </p>
 
       <form id="tambahLimbahForm">
-        
         <div class="form-group">
           <label class="form-label">Judul Limbah</label>
           <input type="text" id="wasteTitle" class="form-control" placeholder="Contoh: Sisa Sayuran Segar" required>
@@ -167,10 +88,10 @@
 
         <div class="form-group" style="margin-bottom: 2rem;">
           <label class="form-label">Deskripsi Tambahan (Opsional)</label>
-          <textarea id="wasteDesc" class="form-control" placeholder="Jelaskan kondisi limbah, tingkat kontaminasi, atau catatan khusus..."></textarea>
+          <textarea id="wasteDesc" class="form-control" rows="3" placeholder="Jelaskan kondisi limbah..." style="resize: vertical;"></textarea>
         </div>
 
-        <button type="submit" id="submitWasteBtn" class="btn btn-primary btn-lg" style="width: 100%; border-radius: var(--radius-sm);">
+        <button type="submit" id="submitWasteBtn" class="btn btn-primary btn-lg" style="width: 100%;">
           <span id="btnText">Posting ke Marketplace</span>
           <i data-lucide="send" id="btnIcon" style="margin-left: 8px;"></i>
         </button>
@@ -185,6 +106,7 @@
   
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
+      // 1. Cek Sesi Login
       const { data: { session } } = await supabaseClient.auth.getSession();
       if (!session) {
         alert('Anda harus login terlebih dahulu!');
@@ -192,23 +114,19 @@
         return;
       }
 
-      // Tarik Kategori
-      const { data: categories, error } = await supabaseClient.from('waste_categories').select('*');
+      // 2. Muat Kategori
+      const { data: categories } = await supabaseClient.from('waste_categories').select('*');
       const select = document.getElementById('wasteCategory');
-      
-      if (error) {
-        console.error("Gagal load kategori:", error);
-        select.innerHTML = '<option value="">Gagal memuat kategori</option>';
-      } else if (categories && categories.length > 0) {
+      if (categories && categories.length > 0) {
         select.innerHTML = '<option value="">Pilih Kategori...</option>';
         categories.forEach(cat => {
           select.innerHTML += `<option value="${cat.id}">${cat.name}</option>`;
         });
       } else {
-        select.innerHTML = '<option value="">Kategori belum diisi di database</option>';
+        select.innerHTML = '<option value="">Kategori tidak ditemukan</option>';
       }
 
-      // Handle Submit
+      // 3. Handle Submit
       document.getElementById('tambahLimbahForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -216,10 +134,20 @@
         const btnText = document.getElementById('btnText');
         const btnIcon = document.getElementById('btnIcon');
         
+        // Ubah tombol jadi loading
         btn.disabled = true;
         btnText.textContent = 'Menyimpan...';
         btnIcon.setAttribute('data-lucide', 'loader');
         lucide.createIcons();
+
+        // SISTEM BATAS WAKTU (TIMEOUT 10 DETIK)
+        const timeoutId = setTimeout(() => {
+          alert('Koneksi ke server terlalu lama (Timeout). Silakan periksa jaringan internet Anda dan coba lagi.');
+          btn.disabled = false;
+          btnText.textContent = 'Posting ke Marketplace';
+          btnIcon.setAttribute('data-lucide', 'send');
+          lucide.createIcons();
+        }, 10000); // 10.000 milidetik = 10 detik
 
         try {
           const { error } = await supabaseClient
@@ -236,13 +164,18 @@
               status: 'available'
             }]);
 
+          // Hentikan timer timeout jika server merespons
+          clearTimeout(timeoutId);
+
           if (error) throw error;
 
-          showToast('Limbah berhasil diposting ke Marketplace!');
-          setTimeout(() => { window.location.href = 'marketplace.html'; }, 2000);
+          alert('Limbah berhasil diposting ke Marketplace!');
+          window.location.href = 'index.html#marketplace';
 
         } catch (error) {
-          showToast(`Gagal posting: ${error.message}`);
+          clearTimeout(timeoutId); // Hentikan timer
+          alert(`Gagal posting: ${error.message}`);
+          
           btn.disabled = false;
           btnText.textContent = 'Posting ke Marketplace';
           btnIcon.setAttribute('data-lucide', 'send');
