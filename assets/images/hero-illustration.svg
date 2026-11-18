@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="heroBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#174D38"/>
+      <stop offset="100%" stop-color="#0E2F22"/>
+    </linearGradient>
+    <linearGradient id="limeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C5DF8B"/>
+      <stop offset="100%" stop-color="#8BB845"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="640" height="480" rx="24" fill="url(#heroBg)"/>
+  
+  <!-- Subtle circular grid / loops -->
+  <circle cx="320" cy="240" r="190" stroke="#4F8B59" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.35"/>
+  <circle cx="320" cy="240" r="130" stroke="#C5DF8B" stroke-width="2" stroke-dasharray="4 4" opacity="0.4"/>
+  <circle cx="320" cy="240" r="70" fill="#205C44" opacity="0.7"/>
+  
+  <!-- Central Sprout Node -->
+  <circle cx="320" cy="240" r="35" fill="url(#limeGlow)"/>
+  <path d="M320 220 C310 230, 310 245, 320 252 C330 245, 330 230, 320 220 Z" fill="#174D38"/>
+  <circle cx="320" cy="235" r="3" fill="#FFFFFF"/>
+
+  <!-- Orbital Node 1: Restaurants & Food Businesses (Top-Left) -->
+  <g transform="translate(140, 110)">
+    <rect x="-70" y="-35" width="140" height="70" rx="14" fill="#FFFFFF" filter="drop-shadow(0 8px 16px rgba(0,0,0,0.15))"/>
+    <circle cx="-40" cy="0" r="18" fill="#EAF3EB"/>
+    <!-- Restaurant Icon -->
+    <path d="M-44 -6 V6 M-36 -6 V6 M-40 -6 V-1" stroke="#174D38" stroke-width="2" stroke-linecap="round"/>
+    <text x="-15" y="-3" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#174D38">Food Business</text>
+    <text x="-15" y="12" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="500" fill="#6A7A6A">Sorted Scraps</text>
+  </g>
+
+  <!-- Orbital Node 2: BSF Bioconversion & Composting (Top-Right) -->
+  <g transform="translate(500, 110)">
+    <rect x="-70" y="-35" width="140" height="70" rx="14" fill="#FFFFFF" filter="drop-shadow(0 8px 16px rgba(0,0,0,0.15))"/>
+    <circle cx="-40" cy="0" r="18" fill="#F4F8F1"/>
+    <!-- Compost / Bio Icon -->
+    <path d="M-40 -6 Q -33 0, -40 6 Q -47 0, -40 -6" fill="#4F8B59"/>
+    <text x="-15" y="-3" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#174D38">BSF &amp; Compost</text>
+    <text x="-15" y="12" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="500" fill="#6A7A6A">Rapid Bioconvert</text>
+  </g>
+
+  <!-- Orbital Node 3: Regenerative Soil & Farms (Bottom) -->
+  <g transform="translate(320, 390)">
+    <rect x="-85" y="-35" width="170" height="70" rx="14" fill="#FFFFFF" filter="drop-shadow(0 8px 16px rgba(0,0,0,0.15))"/>
+    <circle cx="-52" cy="0" r="18" fill="#EAF3EB"/>
+    <!-- Seedling / Farm icon -->
+    <path d="M-52 6 V-4 M-52 -1 C-46 -6, -44 1, -52 1 M-52 -1 C-58 -6, -60 1, -52 1" stroke="#4F8B59" stroke-width="2" fill="none"/>
+    <text x="-25" y="-3" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#174D38">Farmers &amp; Animals</text>
+    <text x="-25" y="12" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="500" fill="#6A7A6A">Nutrient Recaptured</text>
+  </g>
+
+  <!-- Flow Curved Arrows -->
+  <path d="M210 110 C 270 90, 370 90, 430 110" stroke="#C5DF8B" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 6"/>
+  <polygon points="436,112 426,106 428,116" fill="#C5DF8B"/>
+
+  <path d="M500 145 C 510 240, 450 330, 405 375" stroke="#C5DF8B" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 6"/>
+  <polygon points="400,380 405,370 411,377" fill="#C5DF8B"/>
+
+  <path d="M235 375 C 190 330, 130 240, 140 145" stroke="#C5DF8B" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 6"/>
+  <polygon points="140,140 135,148 145,148" fill="#C5DF8B"/>
+
+  <!-- Bottom Floating Badge -->
+  <g transform="translate(320, 460)">
+    <rect x="-120" y="-14" width="240" height="28" rx="14" fill="#0E281D" stroke="#4F8B59" stroke-width="1"/>
+    <text x="0" y="4" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="#C5DF8B" text-anchor="middle">Sistem Rantai Lingkar Organik Indonesia</text>
+  </g>
+</svg>

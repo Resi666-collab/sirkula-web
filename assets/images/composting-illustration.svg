@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="100%" height="100%" fill="none">
+  <rect width="400" height="260" rx="16" fill="#F4F8F1"/>
+  <!-- Soil Layers -->
+  <path d="M0 180 Q 100 170, 200 185 T 400 175 L 400 260 L 0 260 Z" fill="#2E4A35"/>
+  <path d="M0 200 Q 120 190, 240 205 T 400 195 L 400 260 L 0 260 Z" fill="#1E3224"/>
+  
+  <!-- Soil particles and organic matter -->
+  <circle cx="50" cy="220" r="4" fill="#C5DF8B" opacity="0.6"/>
+  <circle cx="120" cy="235" r="3" fill="#C5DF8B" opacity="0.5"/>
+  <circle cx="180" cy="215" r="5" fill="#4F8B59" opacity="0.7"/>
+  <circle cx="280" cy="225" r="3.5" fill="#C5DF8B" opacity="0.6"/>
+  <circle cx="340" cy="238" r="4" fill="#4F8B59" opacity="0.5"/>
+  
+  <!-- Sprouting Plant -->
+  <path d="M200 185 Q 200 130, 200 100" stroke="#4F8B59" stroke-width="5" stroke-linecap="round"/>
+  <!-- Left Leaf -->
+  <path d="M200 140 C 170 135, 145 105, 155 85 C 175 80, 195 110, 200 140 Z" fill="#4F8B59"/>
+  <!-- Right Leaf -->
+  <path d="M200 115 C 230 110, 255 80, 245 60 C 225 55, 205 85, 200 115 Z" fill="#C5DF8B"/>
+  
+  <!-- Compost Cycle Arrows -->
+  <path d="M110 90 A 45 45 0 0 1 150 55" stroke="#174D38" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 4"/>
+  <polygon points="152,50 157,58 147,58" fill="#174D38"/>
+
+  <path d="M250 55 A 45 45 0 0 1 290 90" stroke="#174D38" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 4"/>
+  <polygon points="293,92 287,86 295,84" fill="#174D38"/>
+  
+  <!-- Microorganisms / Nutrients glow -->
+  <circle cx="200" cy="98" r="3" fill="#C5DF8B"/>
+  <circle cx="170" cy="70" r="2.5" fill="#4F8B59"/>
+  <circle cx="230" cy="50" r="2.5" fill="#C5DF8B"/>
+  
+  <text x="200" y="30" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="700" fill="#174D38" text-anchor="middle">Soil Regeneration &amp; Composting</text>
+</svg>

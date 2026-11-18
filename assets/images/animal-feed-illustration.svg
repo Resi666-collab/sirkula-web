@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="100%" height="100%" fill="none">
+  <rect width="400" height="260" rx="16" fill="#F8F8EE"/>
+  
+  <!-- Pasture and feeding trough -->
+  <path d="M0 190 Q 200 175, 400 190 L 400 260 L 0 260 Z" fill="#E2EBE0"/>
+  
+  <!-- Feed Trough -->
+  <path d="M80 165 L 320 165 L 300 215 L 100 215 Z" fill="#174D38"/>
+  <path d="M75 160 L 325 160 L 320 168 L 80 168 Z" fill="#4F8B59"/>
+  <!-- Legs of trough -->
+  <rect x="110" y="215" width="12" height="25" fill="#0E3324"/>
+  <rect x="278" y="215" width="12" height="25" fill="#0E3324"/>
+  
+  <!-- High nutrition grains & sorted organic meal inside trough -->
+  <path d="M95 170 Q 200 162, 305 170 L 295 195 Q 200 188, 105 195 Z" fill="#C5DF8B"/>
+  
+  <!-- Feed grain icons -->
+  <circle cx="140" cy="180" r="3" fill="#174D38"/>
+  <circle cx="165" cy="177" r="2.5" fill="#174D38"/>
+  <circle cx="195" cy="182" r="3" fill="#174D38"/>
+  <circle cx="225" cy="176" r="2.5" fill="#174D38"/>
+  <circle cx="260" cy="181" r="3" fill="#174D38"/>
+
+  <!-- Stylized Farm Animal Silhouettes (Poultry & Cattle) -->
+  <g fill="#174D38" transform="translate(130, 80)">
+    <!-- Hen / Poultry -->
+    <path d="M25 50 C 25 35, 45 35, 55 45 C 62 43, 68 47, 70 55 C 72 65, 60 70, 45 70 C 35 70, 25 62, 25 50 Z"/>
+    <circle cx="63" cy="45" r="7"/>
+    <polygon points="69,43 76,46 69,48" fill="#C5DF8B"/>
+    <path d="M60 40 Q 64 36, 68 40" stroke="#C5DF8B" stroke-width="2"/>
+  </g>
+  
+  <!-- Wheat / Grain Stalks on side -->
+  <g stroke="#4F8B59" stroke-width="2" stroke-linecap="round">
+    <path d="M60 145 C 55 110, 70 80, 80 65"/>
+    <ellipse cx="78" cy="70" rx="4" ry="7" fill="#C5DF8B" stroke="none" transform="rotate(20 78 70)"/>
+    <ellipse cx="68" cy="85" rx="4" ry="7" fill="#C5DF8B" stroke="none" transform="rotate(-20 68 85)"/>
+    <ellipse cx="75" cy="100" rx="4" ry="7" fill="#C5DF8B" stroke="none" transform="rotate(20 75 100)"/>
+  </g>
+  
+  <g stroke="#4F8B59" stroke-width="2" stroke-linecap="round">
+    <path d="M340 145 C 345 110, 330 80, 320 65"/>
+    <ellipse cx="322" cy="70" rx="4" ry="7" fill="#C5DF8B" stroke="none" transform="rotate(-20 322 70)"/>
+    <ellipse cx="332" cy="85" rx="4" ry="7" fill="#C5DF8B" stroke="none" transform="rotate(20 332 85)"/>
+    <ellipse cx="325" cy="100" rx="4" ry="7" fill="#C5DF8B" stroke="none" transform="rotate(-20 325 100)"/>
+  </g>
+  
+  <!-- Safety Check Badge -->
+  <rect x="220" y="65" width="115" height="26" rx="13" fill="#FFFFFF" stroke="#4F8B59" stroke-width="1.5"/>
+  <text x="277" y="82" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="#174D38" text-anchor="middle">&#10003; Safe Feed Protocol</text>
+  
+  <text x="200" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="700" fill="#174D38" text-anchor="middle">Livestock &amp; Animal Nutrition</text>
+</svg>

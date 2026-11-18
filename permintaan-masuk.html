@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Permintaan Masuk — SIRKULA</title>
+  
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <header class="site-header" id="header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-link">
+        <img src="assets/images/logo.svg" alt="SIRKULA Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-title">SIRKULA</span>
+          <span class="brand-tagline-sub">Rantai Lingkar Organik Indonesia</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <!-- Akan diisi oleh JS -->
+      </div>
+    </div>
+  </header>
+
+  <main class="section section-cream" style="min-height: 100vh; padding-top: 4rem;">
+    <div class="container">
+      <div class="section-header text-left" style="margin-bottom: 2rem;">
+        <span class="pill-badge pill-lime">Dashboard Produsen</span>
+        <h1 class="section-title">Permintaan Penjemputan Masuk</h1>
+        <p class="section-subtitle">Kelola permintaan dari kolektor yang ingin mengambil limbah Anda.</p>
+      </div>
+
+      <div id="requestsContainer" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <!-- Data akan dimuat di sini -->
+        <p style="text-align: center; color: var(--color-charcoal-muted);">Memuat data...</p>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast-notice" id="regToast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/main.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      if (!session) {
+        alert('Anda harus login!');
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const container = document.getElementById('requestsContainer');
+
+      // Tarik data permintaan (join dengan tabel listing dan profil peminta)
+      const { data, error } = await supabaseClient
+        .from('pickup_requests')
+        .select(`
+          *,
+          waste_listings!inner (title, quantity, unit, producer_id),
+          profiles (full_name, entity_name, phone)
+        `)
+        .eq('waste_listings.producer_id', session.user.id)
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        container.innerHTML = `<p style="color: red;">Gagal memuat: ${error.message}</p>`;
+        return;
+      }
+
+      if (data.length === 0) {
+        container.innerHTML = `<div class="cta-box-card" style="text-align: center; padding: 3rem;"><p>Belum ada permintaan penjemputan untuk limbah Anda.</p></div>`;
+        return;
+      }
+
+      container.innerHTML = '';
+      data.forEach(req => {
+        const card = document.createElement('div');
+        card.className = 'listing-card'; // Menggunakan style card yang sudah ada
+        
+        // Tentukan warna badge status
+        let statusColor = '#f59e0b'; // pending (kuning)
+        if (req.status === 'approved') statusColor = '#10b981'; // hijau
+        if (req.status === 'rejected') statusColor = '#ef4444'; // merah
+
+        // Sembunyikan tombol jika sudah diproses
+        const actionButtons = req.status === 'pending' ? `
+          <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button class="btn btn-primary btn-sm btn-approve" data-id="${req.id}" style="flex: 1;">Setujui</button>
+            <button class="btn btn-secondary btn-sm btn-reject" data-id="${req.id}" style="flex: 1; color: red; border-color: red;">Tolak</button>
+          </div>
+        ` : '';
+
+        card.innerHTML = `
+          <div class="listing-card-header">
+            <span class="badge-status" style="background: ${statusColor}20; color: ${statusColor}; text-transform: capitalize;">
+              Status: ${req.status}
+            </span>
+            <span style="font-size: 0.8rem; color: #666;">${new Date(req.created_at).toLocaleDateString()}</span>
+          </div>
+          <div class="listing-card-body">
+            <h3 class="listing-producer-title">${req.waste_listings.title}</h3>
+            <div class="listing-waste-type">Diminta oleh: <strong>${req.profiles.entity_name} (${req.profiles.full_name})</strong></div>
+            <div class="listing-meta-table">
+              <div class="meta-row">
+                <span class="meta-label">Jumlah Diminta</span>
+                <span class="meta-value">${req.requested_quantity} ${req.waste_listings.unit}</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">No. WhatsApp</span>
+                <span class="meta-value">${req.profiles.phone || '-'}</span>
+              </div>
+            </div>
+            ${actionButtons}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+
+      // Handle Tombol Setujui
+      document.querySelectorAll('.btn-approve').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          const id = e.target.getAttribute('data-id');
+          e.target.textContent = 'Memproses...';
+          await updateStatus(id, 'approved');
+        });
+      });
+
+      // Handle Tombol Tolak
+      document.querySelectorAll('.btn-reject').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          const id = e.target.getAttribute('data-id');
+          e.target.textContent = 'Memproses...';
+          await updateStatus(id, 'rejected');
+        });
+      });
+    });
+
+    async function updateStatus(id, newStatus) {
+      const { error } = await supabaseClient
+        .from('pickup_requests')
+        .update({ status: newStatus })
+        .eq('id', id);
+
+      if (error) {
+        alert('Gagal mengubah status: ' + error.message);
+      } else {
+        showToast(`Permintaan berhasil di ${newStatus === 'approved' ? 'Setujui' : 'Tolak'}!`);
+        setTimeout(() => window.location.reload(), 1000);
+      }
+    }
+  </script>
+</body>
+</html>

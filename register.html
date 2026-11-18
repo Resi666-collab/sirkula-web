@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar — SIRKULA</title>
+  
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .auth-page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--color-warm-cream);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .auth-main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3.5rem 1.5rem;
+    }
+    .register-card {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      width: 100%;
+      max-width: 680px;
+      box-shadow: var(--shadow-modal);
+      border: 1px solid var(--color-border);
+    }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .form-label { font-weight: 700; font-size: 0.9rem; color: var(--color-forest-green); }
+    .form-control {
+      width: 100%; padding: 0.85rem 1rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm);
+      background: var(--color-warm-cream); font-family: inherit; font-size: 0.95rem; color: var(--color-charcoal);
+    }
+    .form-control:focus { outline: none; border-color: var(--color-leaf-green); background: var(--color-white); }
+    
+    .role-selection-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+    .role-choice-card {
+      border: 2px solid var(--color-border); border-radius: var(--radius-md);
+      padding: 1.25rem 1rem; text-align: center; cursor: pointer;
+      transition: var(--transition-fast); background: var(--color-warm-cream);
+    }
+    .role-choice-card:hover { border-color: var(--color-leaf-green); }
+    .role-choice-card.active { border-color: var(--color-forest-green); background: var(--color-leaf-green-soft); }
+    
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    @media (max-width: 600px) {
+      .role-selection-group, .form-row-2 { grid-template-columns: 1fr; }
+      .register-card { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body class="auth-page-wrapper">
+
+  <main class="auth-main-content">
+    <div class="register-card">
+      <div style="margin-bottom: 1rem;">
+        <span class="badge-demo" style="background: #e8f5e9; color: #2e7d32; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700;">
+          <i data-lucide="shield-check" style="width: 14px; height: 14px; margin-right: 4px;"></i> PENDAFTARAN AKUN
+        </span>
+      </div>
+
+      <h1 class="section-title" style="font-size: 2rem; margin-bottom: 0.35rem; color: var(--color-forest-green);">
+        Bergabung dengan SIRKULA
+      </h1>
+      <p class="section-subtitle" style="font-size: 0.95rem; margin-bottom: 2rem; color: var(--color-charcoal-muted);">
+        Pilih peran Anda dalam rantai keberlanjutan limbah organik Indonesia.
+      </p>
+
+      <!-- Pilihan Role -->
+      <div class="role-selection-group" role="radiogroup">
+        <div class="role-choice-card active" id="roleProducer" onclick="selectRole('producer')">
+          <div style="font-weight: 800; color: var(--color-forest-green);">Produsen Limbah</div>
+          <div style="font-size: 0.8rem; color: var(--color-charcoal-muted); margin-top: 4px;">Restoran, Kafe, Hotel, Katering</div>
+        </div>
+        <div class="role-choice-card" id="roleCollector" onclick="selectRole('collector')">
+          <div style="font-weight: 800; color: var(--color-forest-green);">Pemanfaat / Kolektor</div>
+          <div style="font-size: 0.8rem; color: var(--color-charcoal-muted); margin-top: 4px;">Pembudidaya BSF, Komposter, Petani</div>
+        </div>
+      </div>
+
+      <form id="registerForm">
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Nama Lengkap PIC</label>
+            <input type="text" id="fullName" class="form-control" placeholder="Budi Santoso" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" id="entityLabel">Nama Usaha / Fasilitas</label>
+            <input type="text" id="entityName" class="form-control" placeholder="Contoh: Resto Alam Segar" required>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Alamat Email</label>
+            <input type="email" id="regEmail" class="form-control" placeholder="kontak@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nomor WhatsApp</label>
+            <input type="tel" id="phoneNum" class="form-control" placeholder="+62 812-XXXX-XXXX" required>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Kota Operasional</label>
+            <select id="citySelect" class="form-control" required>
+              <option value="">Pilih Kota...</option>
+              <option value="jakarta">DKI Jakarta</option>
+              <option value="bogor">Bogor</option>
+              <option value="depok">Depok</option>
+              <option value="tangerang">Tangerang / Tangsel</option>
+              <option value="bekasi">Bekasi</option>
+              <option value="bandung">Bandung Raya</option>
+              <option value="surabaya">Surabaya</option>
+              <option value="bali">Bali</option>
+              <option value="yogyakarta">D.I. Yogyakarta</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" id="volumeLabel">Estimasi Volume (Kg)</label>
+            <input type="text" id="volumeEstimate" class="form-control" placeholder="Contoh: 30 - 50 kg/hari" required>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 2rem;">
+          <label class="form-label">Buat Kata Sandi</label>
+          <input type="password" id="regPassword" class="form-control" placeholder="Minimal 8 karakter" required minlength="8">
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn btn-primary btn-lg" style="width: 100%;">
+          <span id="btnText">Ajukan Pendaftaran</span>
+        </button>
+      </form>
+
+      <div style="margin-top: 1.5rem; text-align: center; font-size: 0.9rem;">
+        Sudah memiliki akun? <a href="login.html" style="color: var(--color-forest-green); font-weight: 700;">Masuk di sini</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Panggil Library Supabase Saja -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <script>
+    // 1. KONEKSI LANGSUNG (Bypass main.js)
+    const supabaseUrl = 'https://sfgggatdahekprmkeomo.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNmZ2dnYXRkYWhla3BybWtlb21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ3Mjc4NzIsImV4cCI6MjExMDMwMzg3Mn0.-H2ZAvkJLcGBEG1POuUnrcA9AYbTcxATJakSsCF7Qac';
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+    // 2. LOGIKA PILIH ROLE (PRODUSEN / KOLEKTOR)
+    let currentRole = 'producer';
+    function selectRole(role) {
+      currentRole = role;
+      const producerCard = document.getElementById('roleProducer');
+      const collectorCard = document.getElementById('roleCollector');
+      const entityLabel = document.getElementById('entityLabel');
+      
+      if (role === 'producer') {
+        producerCard.classList.add('active');
+        collectorCard.classList.remove('active');
+        entityLabel.textContent = 'Nama Usaha / Usaha Kuliner';
+      } else {
+        collectorCard.classList.add('active');
+        producerCard.classList.remove('active');
+        entityLabel.textContent = 'Nama Fasilitas / Peternakan';
+      }
+    }
+
+    // 3. LOGIKA SUBMIT FORM
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const btn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      
+      btn.disabled = true;
+      btnText.textContent = 'Memproses...';
+
+      alert("Tombol diklik! Sedang mendaftarkan akun ke Supabase...");
+
+      // Kumpulkan data
+      const metadata = {
+        full_name: document.getElementById('fullName').value,
+        entity_name: document.getElementById('entityName').value,
+        phone: document.getElementById('phoneNum').value,
+        city: document.getElementById('citySelect').value,
+        volume_estimate: document.getElementById('volumeEstimate').value,
+        role: currentRole
+      };
+
+      try {
+        const { data, error } = await supabaseClient.auth.signUp({
+          email: document.getElementById('regEmail').value,
+          password: document.getElementById('regPassword').value,
+          options: { data: metadata }
+        });
+
+        if (error) throw error;
+
+        alert('PENDAFTARAN BERHASIL! Silakan Login.');
+        window.location.href = 'login.html';
+
+      } catch (error) {
+        alert('GAGAL MENDAFTAR: ' + error.message);
+        btn.disabled = false;
+        btnText.textContent = 'Ajukan Pendaftaran';
+      }
+    });
+  </script>
+</body>
+</html>

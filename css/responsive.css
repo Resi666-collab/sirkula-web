@@ -1,0 +1,254 @@
+/* ==========================================================================
+   SIRKULA — Sistem Integrasi Rantai Keberlanjutan Limbah Organik Indonesia
+   Responsive Media Queries & Mobile Adaptation (responsive.css)
+   ========================================================================== */
+
+/* --- 1. DESKTOP / LARGE LAPTOP (<= 1200px) --- */
+@media (max-width: 1200px) {
+  :root {
+    --container-max: 1040px;
+  }
+
+  .hero-headline {
+    font-size: 3rem;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* --- 2. TABLET LANDSCAPE & MEDIUM SCREENS (<= 992px) --- */
+@media (max-width: 992px) {
+  .section {
+    padding: 4.5rem 0;
+  }
+
+  /* Header & Navigation switches to Mobile toggle */
+  .nav-desktop,
+  .btn-login {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hero Section */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .hero-headline {
+    font-size: 2.65rem;
+  }
+
+  .hero-img-main {
+    height: 380px;
+  }
+
+  .hero-floating-top {
+    right: 15px;
+  }
+
+  /* 3-Column Grids collapse to 2 columns */
+  .impact-grid,
+  .steps-container,
+  .categories-grid,
+  .marketplace-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+
+  /* About Section */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  /* Footer */
+  .footer-top-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 2rem;
+  }
+}
+
+/* --- 3. TABLET PORTRAIT & MOBILE (<= 768px) --- */
+@media (max-width: 768px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  /* Hero adjustments */
+  .hero-section {
+    padding: 3.5rem 0 4.5rem 0;
+  }
+
+  .hero-headline {
+    font-size: 2.25rem;
+  }
+
+  .hero-support-text {
+    font-size: 1.05rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .hero-img-main {
+    height: 300px;
+  }
+
+  .hero-floating-badge {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin: 1rem;
+  }
+
+  .hero-floating-top {
+    top: 12px;
+    right: 12px;
+    font-size: 0.775rem;
+    padding: 0.5rem 0.9rem;
+  }
+
+  /* Grids collapse to single column */
+  .impact-grid,
+  .steps-container,
+  .categories-grid,
+  .marketplace-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .about-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-box-card {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .cta-box-card .section-title {
+    font-size: 2.15rem;
+  }
+
+  .cta-buttons-wrap {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-buttons-wrap .btn {
+    width: 100%;
+  }
+
+  /* Footer Bottom */
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .footer-bottom-links {
+    justify-content: center;
+  }
+
+  /* Modal */
+  .modal-window {
+    max-width: 95%;
+  }
+
+  .modal-content-pad {
+    padding: 1.5rem;
+  }
+
+  .modal-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-footer-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modal-footer-actions .btn {
+    width: 100%;
+  }
+}
+
+/* --- 4. SMALL MOBILE SCREENS (<= 480px) --- */
+@media (max-width: 480px) {
+  :root {
+    --container-padding: 1rem;
+    --header-height: 72px;
+  }
+
+  .brand-title {
+    font-size: 1.25rem;
+  }
+
+  .brand-tagline-sub {
+    font-size: 0.58rem;
+  }
+
+  .hero-headline {
+    font-size: 1.95rem;
+  }
+
+  .hero-trust-badges {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .step-card {
+    padding: 2.25rem 1.25rem 1.75rem 1.25rem;
+  }
+
+  .category-body {
+    padding: 1.5rem;
+  }
+
+  .listing-card-body {
+    padding: 0.75rem 1.25rem 1.25rem 1.25rem;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .filter-chips-container {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .toast-notice {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+}

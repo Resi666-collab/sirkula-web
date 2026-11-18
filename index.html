@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIRKULA — Sistem Integrasi Rantai Keberlanjutan Limbah Organik Indonesia</title>
+  
+  <meta name="description" content="SIRKULA menghubungkan restoran, kafe, hotel, dan usaha pangan dengan komposter, pembudidaya maggot BSF, dan peternak untuk mendaur ulang limbah organik di seluruh Indonesia.">
+  <meta name="theme-color" content="#174D38">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* === PERBAIKAN NAVBAR AGAR TIDAK TERPOTONG === */
+    .header-container {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: nowrap; gap: 5px; width: 100%;
+    }
+    .brand-link { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .brand-text-block { display: flex; flex-direction: column; }
+    .brand-title { font-size: 1.2rem; font-weight: 800; line-height: 1; }
+    .brand-tagline-sub { font-size: 0.55rem; white-space: nowrap; }
+    .nav-desktop { display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; font-size: 0.85rem; flex-shrink: 1; }
+    .header-actions { display: flex; align-items: center; gap: 0.4rem; flex-shrink: 0; }
+    .header-actions .btn-sm { padding: 0.35rem 0.6rem; font-size: 0.75rem; border-radius: 15px; white-space: nowrap; }
+    
+    .toggle-btn {
+      background: transparent; border: 1.5px solid var(--color-border); color: var(--color-forest-green);
+      padding: 0.3rem 0.5rem; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.75rem;
+      display: flex; align-items: center; gap: 2px; white-space: nowrap; transition: 0.2s;
+    }
+    .toggle-btn:hover { background: var(--color-border); }
+
+    /* === TEMA GELAP === */
+    body.dark-mode {
+      --color-warm-cream: #121212; --color-white: #1e1e1e; --color-charcoal: #e0e0e0; --color-charcoal-muted: #a0a0a0; --color-border: #333333;
+      background-color: #121212; color: #e0e0e0;
+    }
+    body.dark-mode .site-header { background: #1e1e1e; border-bottom: 1px solid #333; }
+    body.dark-mode .listing-card, body.dark-mode .cta-box-card, body.dark-mode .impact-card, body.dark-mode .step-card, body.dark-mode .category-card { background: #2a2a2a; border-color: #444; }
+    body.dark-mode .toggle-btn { color: #fff; border-color: #555; }
+    body.dark-mode .footer-contact-col a, body.dark-mode .footer-links-col a { color: #ccc; }
+
+    @media (max-width: 1024px) { .nav-desktop { display: none; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <header class="site-header" id="header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-link">
+        <img src="assets/images/logo.svg" alt="Logo" class="brand-logo-img" style="width: 35px;">
+        <div class="brand-text-block">
+          <span class="brand-title">SIRKULA</span>
+          <span class="brand-tagline-sub">Rantai Lingkar Organik Indonesia</span>
+        </div>
+      </a>
+
+      <nav class="nav-desktop">
+        <a href="#hero" class="nav-link active" data-translate="home">Home</a>
+        <a href="#how-it-works" class="nav-link" data-translate="how">How It Works</a>
+        <a href="#categories" class="nav-link" data-translate="categories">Categories</a>
+        <a href="#marketplace" class="nav-link" data-translate="explore">Explore Waste</a>
+        <a href="#about" class="nav-link" data-translate="about">About Us</a>
+        <a href="#impact" class="nav-link" data-translate="impact">Impact</a>
+      </nav>
+
+      <div class="header-actions" id="headerActions">
+        <a href="login.html" class="btn-login" id="navLogin">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm" id="navRegister">Register</a>
+        
+        <button id="langToggle" class="toggle-btn"><i data-lucide="globe" style="width: 14px;"></i> ID</button>
+        <button id="themeToggle" class="toggle-btn"><i data-lucide="moon" style="width: 14px;"></i></button>
+        <button type="button" class="menu-toggle" id="menuToggleBtn"><i data-lucide="menu"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <div class="brand-link">
+        <img src="assets/images/logo.svg" alt="Logo" style="width: 32px; height: 32px;">
+        <span class="brand-title" style="font-size: 1.25rem;">SIRKULA</span>
+      </div>
+      <button type="button" class="drawer-close" id="closeDrawerBtn"><i data-lucide="x"></i></button>
+    </div>
+    <nav class="mobile-nav-list">
+      <a href="#hero" class="mobile-nav-link">Home</a>
+      <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+      <a href="#categories" class="mobile-nav-link">Categories</a>
+      <a href="#marketplace" class="mobile-nav-link">Explore Waste</a>
+      <a href="#about" class="mobile-nav-link">About Us</a>
+      <a href="#impact" class="mobile-nav-link">Impact</a>
+    </nav>
+    <div class="drawer-actions" id="drawerActions">
+      <a href="login.html" class="btn btn-secondary" style="width: 100%;">Log In</a>
+      <a href="register.html" class="btn btn-primary" style="width: 100%;">Register</a>
+    </div>
+  </aside>
+
+  <main id="main-content">
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          
+          <!-- WADAH UNTUK SAPAAN (Tanpa Icon Profil) -->
+          <div id="heroGreetingContainer" style="margin-bottom: 1.5rem;"></div>
+
+          <div class="hero-tagline-pill">
+            <span class="dot"></span>
+            <span class="hero-tagline-text" data-translate="tagline">Waste less. Give more. Grow better.</span>
+          </div>
+          <h1 class="hero-headline" data-translate="heroTitle">
+            Turn Organic Waste Into <span class="highlight">New Opportunities.</span>
+          </h1>
+          <p class="hero-support-text" data-translate="heroSub">
+            Connecting food businesses with people who transform organic waste into valuable resources for a more sustainable Indonesia.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#marketplace" class="btn btn-primary btn-lg">
+              <span data-translate="ctaExplore">Explore Available Waste</span>
+              <i data-lucide="arrow-right"></i>
+            </a>
+            <a href="register.html" class="btn btn-secondary btn-lg" data-translate="ctaJoin">Join SIRKULA</a>
+          </div>
+          <div class="hero-trust-badges">
+            <div class="hero-badge-item"><i data-lucide="check-circle-2"></i><span>Verified Businesses</span></div>
+            <div class="hero-badge-item"><i data-lucide="repeat"></i><span>Closed-Loop Cycle</span></div>
+            <div class="hero-badge-item"><i data-lucide="map-pin"></i><span>Nationwide</span></div>
+          </div>
+        </div>
+        <div class="hero-visual-wrapper">
+          <div class="hero-visual-card">
+            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1000&q=80" alt="Organic soil" class="hero-img-main">
+            <div class="hero-floating-top">
+              <span class="pulse-dot"></span>
+              <span data-translate="activeMatch">Active Organic Matchmaking</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT SECTION -->
+    <section class="section section-white" id="impact" aria-labelledby="impact-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="pill-badge">Platform Mission &amp; Purpose</span>
+          <h2 class="section-title" id="impact-title">Building a Resilient Organic Supply Chain for Indonesia</h2>
+          <p class="section-subtitle">Organic residues represent over 40% of Indonesia's municipal waste stream. Rather than filling open landfills and releasing harmful methane, SIRKULA redirects pre-sorted organic streams directly into regenerative local uses.</p>
+        </div>
+        <div class="impact-grid">
+          <article class="impact-card">
+            <div class="impact-icon-wrap"><i data-lucide="leaf"></i></div>
+            <h3 class="impact-card-title">Methane Prevention at Source</h3>
+            <p class="impact-card-desc">By collecting clean kitchen trimmings and market surplus before anaerobic rotting begins in municipal dumps, organic nutrients are safeguarded and greenhouse gas emissions are directly averted.</p>
+            <div class="impact-card-footer"><i data-lucide="shield-check"></i><span>Source-Segregated Traceability</span></div>
+          </article>
+          <article class="impact-card">
+            <div class="impact-icon-wrap"><i data-lucide="network"></i></div>
+            <h3 class="impact-card-title">Decentralized Local Exchanges</h3>
+            <p class="impact-card-desc">Long transportation routes increase spoilage and transport costs. SIRKULA connects food enterprises with nearby micro-cultivators, urban compost facilities, and peri-urban smallholder farms.</p>
+            <div class="impact-card-footer"><i data-lucide="truck"></i><span>Low-Radius Logistical Pairing</span></div>
+          </article>
+          <article class="impact-card">
+            <div class="impact-icon-wrap"><i data-lucide="sprout"></i></div>
+            <h3 class="impact-card-title">National Circular Alignment</h3>
+            <p class="impact-card-desc">Structured in harmony with Indonesia's Circular Economy Roadmap, transforming waste management from an expensive disposal cost into a regenerative feedstock for protein and soil restoration.</p>
+            <div class="impact-card-footer"><i data-lucide="award"></i><span>Bappenas Circular Principles</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section class="section section-cream" id="how-it-works" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="pill-badge pill-lime">Three-Step Flow</span>
+          <h2 class="section-title" id="how-title">How SIRKULA Works</h2>
+          <p class="section-subtitle">A frictionless pathway enabling hospitality and culinary businesses to redirect food residues safely into the hands of responsible upcyclers.</p>
+        </div>
+        <div class="steps-container">
+          <div class="step-card">
+            <div class="step-number-badge">1</div>
+            <div class="step-header"><span class="step-role-tag">Food Businesses</span><h3 class="step-title">Report Organic Waste</h3></div>
+            <p class="step-desc">Restaurants, cafes, hotels, and food markets log their sorted organic surplus, specifying volume, feedstock type, and pickup window.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number-badge">2</div>
+            <div class="step-header"><span class="step-role-tag">Collectors</span><h3 class="step-title">Connect &amp; Request</h3></div>
+            <p class="step-desc">Composters, BSF insect breeders, and livestock owners search listings within their radius, inspect purity ratings, and request matching batches.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number-badge">3</div>
+            <div class="step-header"><span class="step-role-tag">Circular Ecosystem</span><h3 class="step-title">Collect &amp; Reuse</h3></div>
+            <p class="step-desc">Waste is collected during the designated handover window and directly converted into high-grade compost, protein-dense insect feed, or animal nourishment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES SECTION -->
+    <section class="section section-white" id="categories" aria-labelledby="categories-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="pill-badge">Upcycling Pathways</span>
+          <h2 class="section-title" id="categories-title">Waste Utilization Categories</h2>
+          <p class="section-subtitle">Not all organic waste is equal. We categorize feedstock to ensure every organic fraction meets its optimal, biologically safe valorization route.</p>
+        </div>
+        <div class="categories-grid">
+          <article class="category-card">
+            <div class="category-media">
+              <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=800&q=80" alt="Compost" class="category-img">
+              <span class="category-badge-pill">Soil Enrichment</span>
+            </div>
+            <div class="category-body">
+              <h3 class="category-title">1. Composting</h3>
+              <p class="category-desc">Vegetable peelings, spent coffee grounds, dry leaves, and garden off-cuts are transformed via microbial decomposition into humus-rich organic soil amendment.</p>
+            </div>
+          </article>
+          <article class="category-card">
+            <div class="category-media">
+              <img src="https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=800&q=80" alt="BSF" class="category-img">
+              <span class="category-badge-pill">Protein Bioconversion</span>
+            </div>
+            <div class="category-body">
+              <h3 class="category-title">2. BSF Cultivation</h3>
+              <p class="category-desc">Black Soldier Fly larvae rapidly consume diverse food scraps, yielding high-protein larval meal for aquaculture and poultry, while leaving behind frass biofertilizer.</p>
+            </div>
+          </article>
+          <article class="category-card">
+            <div class="category-media">
+              <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=800&q=80" alt="Animal Feed" class="category-img">
+              <span class="category-badge-pill">Livestock Nutrition</span>
+            </div>
+            <div class="category-body">
+              <h3 class="category-title">3. Animal Feed</h3>
+              <p class="category-desc">Clean, unadulterated bakery surpluses, spent brewer and tofu grains, and fresh whole produce are safely redirected to nourish local farm animals.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARKETPLACE PREVIEW -->
+    <section class="section section-cream" id="marketplace" aria-labelledby="marketplace-title">
+      <div class="container">
+        <div class="marketplace-header-wrap">
+          <span class="pill-badge pill-lime">Live Exchange Simulation</span>
+          <h2 class="section-title" id="marketplace-title">Explore Available Waste Listings</h2>
+          <p class="section-subtitle">Discover real-time organic feedstock streams reported by verified food partners.</p>
+          
+          <div class="demo-disclaimer-box" role="note">
+            <i data-lucide="alert-triangle"></i>
+            <div class="demo-disclaimer-text">
+              <strong>DATA ASLI DARI DATABASE</strong>
+              Menampilkan pasokan limbah dari mitra SIRKULA secara *real-time*.
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-chips-container" role="tablist">
+          <button type="button" class="filter-chip active" data-filter="all">All Feedstocks</button>
+          <button type="button" class="filter-chip" data-filter="vegetables">Vegetables &amp; Fruits</button>
+          <button type="button" class="filter-chip" data-filter="coffee">Spent Coffee</button>
+          <button type="button" class="filter-chip" data-filter="bakery">Bakery &amp; Grains</button>
+        </div>
+
+        <div class="marketplace-grid" id="marketplaceCardsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section section-white" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-text-content">
+          <span class="pill-badge">About Our Vision</span>
+          <h2 class="section-title" id="about-title">Pioneering Indonesia's Closed-Loop Food Sustainability</h2>
+          <p class="about-body-paragraph">
+            SIRKULA — <em>Sistem Integrasi Rantai Keberlanjutan Limbah Organik Indonesia</em> — was conceptualized to address one of the archipelago's most critical environmental challenges: the sheer volume of organic nutrients lost to unmanaged municipal landfills.
+          </p>
+          <p class="about-body-paragraph">
+            Instead of viewing organic by-products as waste requiring costly disposal, our infrastructure treats each fraction as an essential industrial and agricultural resource. We bridge the logistical gap between urban food service businesses and regional agricultural innovators.
+          </p>
+        </div>
+        <div class="about-visual-showcase">
+          <div class="about-frame">
+            <div class="about-frame-quote">
+              "Every kilogram of organic matter kept out of a landfill is clean soil restored and methane prevented."
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="section section-cream" id="cta">
+      <div class="container">
+        <div class="cta-box-card">
+          <span class="pill-badge pill-forest">Get Involved Today</span>
+          <h2 class="section-title" style="color: white;">Be Part of the Circular Movement.</h2>
+          <div class="cta-buttons-wrap">
+            <a href="register.html?role=business" class="btn btn-lime btn-lg"><i data-lucide="building-2"></i> Register as a Business</a>
+            <a href="register.html?role=collector" class="btn btn-outline-white btn-lg"><i data-lucide="truck"></i> Join as a Collector</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER PROFESIONAL (BISA DIKLIK) -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-grid">
+        
+        <!-- Kolom 1: Brand & Sosmed -->
+        <div class="footer-brand-col">
+          <div class="brand-link" style="margin-bottom: 0.75rem;">
+            <img src="assets/images/logo.svg" alt="SIRKULA Logo" style="width: 36px; height: 36px;">
+            <span class="footer-brand-title">SIRKULA</span>
+          </div>
+          <div class="footer-brand-meaning">
+            Sistem Integrasi Rantai Keberlanjutan Limbah Organik Indonesia
+          </div>
+          <div class="footer-tagline-quote">
+            "Waste less. Give more. Grow better."
+          </div>
+          <p class="footer-brand-desc">
+            The dedicated digital exchange connecting commercial food establishments with decentralized composters, BSF insect farms, and agricultural upcyclers across Indonesia.
+          </p>
+          
+          <!-- Sosial Media (SVG Murni - Anti Gagal Muncul) -->
+          <div class="footer-social-links" aria-label="Social Media Links" style="display: flex; gap: 10px; margin-top: 1rem;">
+            <a href="https://www.instagram.com/resi.ajhari/" target="_blank" rel="noopener noreferrer" class="social-link-btn" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; transition: 0.3s;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link-btn" aria-label="LinkedIn" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; transition: 0.3s;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.youtube.com/watch?v=qzB2k2rc7RE="_blank" rel="noopener noreferrer" class="social-link-btn" aria-label="YouTube" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; transition: 0.3s;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7.1C2.5 7.1 2.4 5 4.3 4.2c1.9-.8 13.8-.8 15.7 0 1.9.8 1.8 2.9 1.8 2.9s.1 2.1.1 4.2c0 2.1-.1 4.2-.1 4.2s0 2.1-1.8 2.9c-1.9.8-15.7.8-15.7 0-1.9-.8-1.8-2.9-1.8-2.9S2.4 13.4 2.4 11.3c0-2.1.1-4.2.1-4.2z"/><polygon points="9.7 15.4 14.8 11.3 9.7 7.2"/></svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link-btn" aria-label="Twitter" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; transition: 0.3s;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kolom 2: Navigasi -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links-list">
+            <li><a href="#hero" class="footer-link">Home</a></li>
+            <li><a href="#how-it-works" class="footer-link">How It Works</a></li>
+            <li><a href="#categories" class="footer-link">Utilization Categories</a></li>
+            <li><a href="#marketplace" class="footer-link">Explore Waste</a></li>
+            <li><a href="#about" class="footer-link">About SIRKULA</a></li>
+            <li><a href="#impact" class="footer-link">Trust &amp; Mission</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3: Kategori Upcycling -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">Upcycling Streams</h4>
+          <ul class="footer-links-list">
+            <li><a href="#categories" class="footer-link">Soil Composting</a></li>
+            <li><a href="#categories" class="footer-link">BSF Larvae Bioconversion</a></li>
+            <li><a href="#categories" class="footer-link">Livestock &amp; Animal Feed</a></li>
+            <li><a href="#categories" class="footer-link">Spent Coffee Ground Recovery</a></li>
+            <li><a href="#categories" class="footer-link">Pre-consumer Bakery Discards</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 4: Kontak (Bisa Diklik) -->
+        <div class="footer-contact-col">
+          <h4 class="footer-col-title">Contact &amp; Hub</h4>
+          <div class="footer-contact-list" style="display: flex; flex-direction: column; gap: 0.8rem;">
+            
+            <!-- Lokasi ke Google Maps -->
+            <a href="https://maps.google.com/?q=Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="contact-item" style="display: flex; gap: 10px; color: inherit; text-decoration: none;">
+              <i data-lucide="map-pin" style="width: 20px; height: 20px; flex-shrink: 0;"></i>
+              <span>Gedung Graha Sirkula, Jl. TB Simatupang, Jakarta Selatan 12430, Indonesia</span>
+            </a>
+
+            <!-- Email ke Mailto -->
+            <a href="mailto:halo@sirkula.id" class="contact-item" style="display: flex; gap: 10px; color: inherit; text-decoration: none;">
+              <i data-lucide="mail" style="width: 20px; height: 20px; flex-shrink: 0;"></i>
+              <span>halo@sirkula.id</span>
+            </a>
+
+            <!-- Telepon ke WhatsApp / Telp -->
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="contact-item" style="display: flex; gap: 10px; color: inherit; text-decoration: none;">
+              <i data-lucide="phone" style="width: 20px; height: 20px; flex-shrink: 0;"></i>
+              <span>+62 (021) 8089-2026 (Mon–Fri 09:00–17:00 WIB)</span>
+            </a>
+
+            <div class="contact-item" style="display: flex; gap: 10px; color: inherit;">
+              <i data-lucide="shield" style="width: 20px; height: 20px; flex-shrink: 0;"></i>
+              <span>Phase 1 Prototype &bull; Netlify Ready</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Garis Bawah -->
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 SIRKULA (Sistem Integrasi Rantai Keberlanjutan Limbah Organik Indonesia). All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#" onclick="alert('Privacy Policy'); return false;">Privacy Policy</a>
+          <a href="#" onclick="alert('Terms of Service'); return false;">Terms of Service</a>
+          <a href="#" onclick="alert('Purity Guidelines'); return false;">Purity Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DETAIL -->
+  <div class="modal-overlay" id="listingDetailModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-window">
+      <button type="button" class="modal-close-btn" id="closeModalBtn"><i data-lucide="x"></i></button>
+      <div class="modal-content-pad">
+        <div class="modal-header-section">
+          <span class="badge-demo"><i data-lucide="alert-circle"></i> DETAIL LIMBAH</span>
+          <h3 id="modalListingTitle">Judul Limbah</h3>
+          <p id="modalProducerName">Nama Produsen</p>
+        </div>
+        <div class="modal-body-details">
+          <div class="modal-detail-grid">
+            <div><span class="meta-label">Location</span><div id="modalLocation" class="meta-value">-</div></div>
+            <div><span class="meta-label">Estimated Volume</span><div id="modalVolume" class="meta-value">-</div></div>
+            <div><span class="meta-label">Handover Window</span><div id="modalSchedule" class="meta-value">-</div></div>
+          </div>
+          <div>
+            <h4 style="font-size: 0.95rem; font-weight: 700; margin: 1rem 0 0.4rem;">Producer Handling Notes</h4>
+            <p id="modalNotes">-</p>
+          </div>
+        </div>
+        <div class="modal-footer-actions">
+          <button type="button" class="btn btn-secondary" onclick="document.getElementById('closeModalBtn').click();">Close</button>
+          <button type="button" class="btn btn-primary" id="modalRequestPickupBtn"><i data-lucide="send"></i> Request Pickup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Limbah Organik — SIRKULA Marketplace</title>
+  
+  <meta name="description" content="Jelajahi ketersediaan pasokan limbah organik terpilah dari restoran, hotel, dan usaha pangan di seluruh Indonesia.">
+  <meta name="theme-color" content="#174D38">
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .marketplace-search-bar {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--color-border);
+      display: grid;
+      grid-template-columns: 2fr 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .search-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-input-wrap svg {
+      position: absolute;
+      left: 1rem;
+      color: var(--color-leaf-green);
+      width: 20px;
+      height: 20px;
+    }
+    .search-input-wrap input {
+      width: 100%;
+      padding: 0.85rem 1rem 0.85rem 2.85rem;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--color-border);
+      background: var(--color-warm-cream);
+    }
+    .search-input-wrap input:focus {
+      outline: none;
+      border-color: var(--color-leaf-green);
+      background: var(--color-white);
+    }
+    @media (max-width: 768px) {
+      .marketplace-search-bar { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <!-- Navigation Bar -->
+  <header class="site-header" id="header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-link" aria-label="SIRKULA Beranda">
+        <img src="assets/images/logo.svg" alt="SIRKULA Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-title">SIRKULA</span>
+          <span class="brand-tagline-sub">Rantai Lingkar Organik Indonesia</span>
+        </div>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Navigasi Utama">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+        <a href="index.html#categories" class="nav-link">Categories</a>
+        <a href="marketplace.html" class="nav-link active">Explore Waste</a>
+        <a href="index.html#about" class="nav-link">About Us</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn-login">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        <button type="button" class="menu-toggle" aria-label="Buka Menu Navigasi" aria-expanded="false" aria-controls="mobileDrawer">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-nav-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="brand-link">
+        <img src="assets/images/logo.svg" alt="SIRKULA Logo" style="width: 32px; height: 32px;">
+        <span class="brand-title" style="font-size: 1.25rem;">SIRKULA</span>
+      </div>
+      <button type="button" class="drawer-close" aria-label="Tutup Menu Navigasi">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <nav class="mobile-nav-list">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="index.html#how-it-works" class="mobile-nav-link">How It Works</a>
+      <a href="index.html#categories" class="mobile-nav-link">Categories</a>
+      <a href="marketplace.html" class="mobile-nav-link">Explore Waste</a>
+      <a href="index.html#about" class="mobile-nav-link">About Us</a>
+    </nav>
+
+    <div class="drawer-actions">
+      <a href="login.html" class="btn btn-secondary" style="width: 100%;">Log In</a>
+      <a href="register.html" class="btn btn-primary" style="width: 100%;">Register</a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main id="main-content" class="section section-cream">
+    <div class="container">
+      
+      <div class="section-header text-left">
+        <span class="pill-badge pill-lime">Katalog Terbuka Limbah Organik</span>
+        <h1 class="section-title">Eksplorasi Pasokan Limbah Organik</h1>
+        <p class="section-subtitle">
+          Temukan sumber limbah organik terpilah dari hotel, restoran, kafe, katering, dan pasar pangan terverifikasi di wilayah Anda.
+        </p>
+
+        <div class="demo-disclaimer-box" role="note" style="margin-top: 1.5rem;">
+          <i data-lucide="alert-triangle"></i>
+          <div class="demo-disclaimer-text">
+            <strong>SIMULASI MARKETPLACE — DATA DEMO</strong>
+            Saat ini menampilkan data simulasi. Data asli dari mitra akan muncul di sini secara otomatis.
+          </div>
+        </div>
+      </div>
+
+      <div class="marketplace-search-bar">
+        <div class="search-input-wrap">
+          <i data-lucide="search"></i>
+          <input type="text" id="searchInput" placeholder="Cari jenis limbah..." oninput="handleSearch()">
+        </div>
+        <div>
+          <select id="locationFilter" class="auth-input" style="padding: 0.85rem;" onchange="handleLocationFilter()">
+            <option value="all">Semua Wilayah Indonesia</option>
+            <option value="Jakarta">DKI Jakarta</option>
+            <option value="Bandung">Bandung Raya</option>
+            <option value="Surabaya">Surabaya</option>
+            <option value="Bali">Bali (Gianyar / Ubud)</option>
+            <option value="Tangsel">Tangerang Selatan</option>
+            <option value="Yogyakarta">D.I. Yogyakarta</option>
+            <option value="Bekasi">Bekasi</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="window.sirkulaDemoAction('Filter Lanjutan');">
+          <i data-lucide="filter"></i> Filter
+        </button>
+      </div>
+
+      <div class="filter-chips-container" role="tablist" style="justify-content: flex-start; margin-bottom: 2.5rem;">
+        <button type="button" class="filter-chip active" data-filter="all">Semua Kategori</button>
+        <button type="button" class="filter-chip" data-filter="vegetables">Sayuran &amp; Buah</button>
+        <button type="button" class="filter-chip" data-filter="coffee">Ampas Kopi</button>
+        <button type="button" class="filter-chip" data-filter="bakery">Roti &amp; Gandum</button>
+        <button type="button" class="filter-chip" data-filter="cooked">Makanan Pra-Konsumsi</button>
+      </div>
+
+      <!-- Grid of Listings -->
+      <div class="marketplace-grid" id="marketplaceCardsGrid">
+        
+        <!-- Card 1 -->
+        <article class="listing-card" data-category="vegetables" data-location="Jakarta" data-name="Green Garden Cafe sayur buah trimmings">
+          <div class="listing-card-header">
+            <span class="badge-demo"><i data-lucide="tag"></i> DEMO DATA</span>
+            <span class="badge-status available">Available Today</span>
+          </div>
+          <div class="listing-card-body">
+            <h3 class="listing-producer-title">Green Garden Cafe</h3>
+            <div class="listing-waste-type">Fresh Vegetable &amp; Fruit Trimmings</div>
+            <div class="listing-meta-table">
+              <div class="meta-row"><span class="meta-label">Quantity</span><span class="meta-value"><i data-lucide="scale"></i> 35–45 kg/day</span></div>
+              <div class="meta-row"><span class="meta-label">Location</span><span class="meta-value"><i data-lucide="map-pin"></i> Kemang, Jaksel</span></div>
+              <div class="meta-row"><span class="meta-label">Schedule</span><span class="meta-value"><i data-lucide="clock"></i> Daily 21:30 WIB</span></div>
+              <div class="meta-row"><span class="meta-label">Best For</span><span class="meta-value"><i data-lucide="sprout"></i> BSF / Compost</span></div>
+            </div>
+            <div class="listing-card-footer">
+              <span class="listing-verification"><i data-lucide="shield-check"></i> Pre-sorted Clean</span>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="window.sirkulaDemoAction('Detail Limbah');">View Details</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="listing-card" data-category="coffee" data-location="Bandung" data-name="Roast Brew ampas kopi coffee grounds">
+          <div class="listing-card-header">
+            <span class="badge-demo"><i data-lucide="tag"></i> DEMO DATA</span>
+            <span class="badge-status available">Available Recurring</span>
+          </div>
+          <div class="listing-card-body">
+            <h3 class="listing-producer-title">Roast &amp; Brew Coffee</h3>
+            <div class="listing-waste-type">Pure Spent Coffee Grounds</div>
+            <div class="listing-meta-table">
+              <div class="meta-row"><span class="meta-label">Quantity</span><span class="meta-value"><i data-lucide="scale"></i> 60 kg/week</span></div>
+              <div class="meta-row"><span class="meta-label">Location</span><span class="meta-value"><i data-lucide="map-pin"></i> Dago, Bandung</span></div>
+              <div class="meta-row"><span class="meta-label">Schedule</span><span class="meta-value"><i data-lucide="clock"></i> Tue &amp; Fri 18:00</span></div>
+              <div class="meta-row"><span class="meta-label">Best For</span><span class="meta-value"><i data-lucide="sprout"></i> Soil / Fungi</span></div>
+            </div>
+            <div class="listing-card-footer">
+              <span class="listing-verification"><i data-lucide="shield-check"></i> 100% Pure Grounds</span>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="window.sirkulaDemoAction('Detail Limbah');">View Details</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="cta-box-card" style="margin-top: 5rem; padding: 3.5rem 2rem;">
+        <h2 class="section-title" style="font-size: 2.25rem; color: var(--color-white); margin-bottom: 0.75rem;">
+          Memiliki Pasokan Limbah Organik Rutin?
+        </h2>
+        <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.85); margin-bottom: 2rem;">
+          Daftarkan bisnis kuliner atau pasar Anda ke dalam sistem integrasi SIRKULA.
+        </p>
+        <a href="register.html?role=business" class="btn btn-lime btn-lg">
+          <i data-lucide="plus-circle"></i> Daftarkan Usaha Anda
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <div class="brand-link" style="margin-bottom: 0.75rem;">
+            <img src="assets/images/logo.svg" alt="SIRKULA Logo" style="width: 36px; height: 36px;">
+            <span class="footer-brand-title">SIRKULA</span>
+          </div>
+          <div class="footer-brand-meaning">Sistem Integrasi Rantai Keberlanjutan Limbah Organik Indonesia</div>
+          <p class="footer-brand-desc">Waste less. Give more. Grow better.</p>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 SIRKULA. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/main.js"></script>
+  
+  <script>
+    function handleSearch() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.listing-card');
+
+      cards.forEach(card => {
+        const name = (card.getAttribute('data-name') || '').toLowerCase();
+        const category = (card.getAttribute('data-category') || '').toLowerCase();
+        if (name.includes(query) || category.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function handleLocationFilter() {
+      const loc = document.getElementById('locationFilter').value;
+      const cards = document.querySelectorAll('.listing-card');
+
+      cards.forEach(card => {
+        const cardLoc = card.getAttribute('data-location');
+        if (loc === 'all' || cardLoc === loc) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

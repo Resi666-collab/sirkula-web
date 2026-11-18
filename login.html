@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk — SIRKULA</title>
+  
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .auth-page-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-warm-cream); font-family: 'Plus Jakarta Sans', sans-serif; }
+    .login-card { background: var(--color-white); border-radius: var(--radius-xl); padding: 3rem; width: 100%; max-width: 480px; box-shadow: var(--shadow-modal); border: 1px solid var(--color-border); }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .form-label { font-weight: 700; font-size: 0.9rem; color: var(--color-forest-green); }
+    .form-control { width: 100%; padding: 0.85rem 1rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-warm-cream); font-family: inherit; font-size: 0.95rem; }
+  </style>
+</head>
+<body class="auth-page-wrapper">
+  <main class="login-card">
+    <h1 class="section-title" style="font-size: 2rem; margin-bottom: 0.35rem; color: var(--color-forest-green);">Selamat Datang Kembali</h1>
+    <p class="section-subtitle" style="font-size: 0.95rem; margin-bottom: 2rem;">Masuk untuk mengelola pasokan limbah organik Anda.</p>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label class="form-label">Alamat Email</label>
+        <input type="email" id="loginEmail" class="form-control" placeholder="kontak@email.com" required>
+      </div>
+      
+      <div class="form-group" style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <label class="form-label">Kata Sandi</label>
+          <!-- LINK LUPA PASSWORD -->
+          <a href="#" id="forgotPasswordLink" style="font-size: 0.8rem; color: var(--color-leaf-green); font-weight: 600; text-decoration: none;">Lupa Kata Sandi?</a>
+        </div>
+        <input type="password" id="loginPassword" class="form-control" placeholder="Masukkan kata sandi" required>
+      </div>
+
+      <button type="submit" id="loginBtn" class="btn btn-primary btn-lg" style="width: 100%;">
+        <span id="loginBtnText">Masuk ke Akun</span>
+      </button>
+    </form>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabaseUrl = 'https://sfgggatdahekprmkeomo.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNmZ2dnYXRkYWhla3BybWtlb21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ3Mjc4NzIsImV4cCI6MjExMDMwMzg3Mn0.-H2ZAvkJLcGBEG1POuUnrcA9AYbTcxATJakSsCF7Qac';
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+    // 1. Logika Login
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btnText = document.getElementById('loginBtnText');
+      btnText.textContent = 'Memverifikasi...';
+
+      try {
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+          email: document.getElementById('loginEmail').value,
+          password: document.getElementById('loginPassword').value,
+        });
+        if (error) throw error;
+        alert('LOGIN BERHASIL!');
+        window.location.href = 'index.html';
+      } catch (error) {
+        alert('GAGAL LOGIN: ' + error.message);
+        btnText.textContent = 'Masuk ke Akun';
+      }
+    });
+
+    // 2. Logika Lupa Kata Sandi
+    document.getElementById('forgotPasswordLink').addEventListener('click', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      
+      if (!email) {
+        alert("Silakan isi Alamat Email Anda terlebih dahulu di kolom input, lalu klik 'Lupa Kata Sandi' lagi.");
+        return;
+      }
+
+      try {
+        const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+          redirectTo: 'http://localhost:8080/reset-password.html', // Arahkan ke halaman reset nanti
+        });
+        
+        if (error) throw error;
+        alert(`Tautan reset kata sandi telah dikirim ke email ${email}. Silakan cek Inbox/Spam Anda.`);
+      } catch (error) {
+        alert('Gagal mengirim email reset: ' + error.message);
+      }
+    });
+  </script>
+</body>
+</html>
